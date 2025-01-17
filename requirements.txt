@@ -1,0 +1,16 @@
+Flask
+pymongo
+Flask-Login
+Flask-WTF
+python-dotenv
+flask_sqlalchemy
+flask_bcrypt
+wtforms
+email_validator
+flask-pymongo
+bcrypt
+opencv-python
+numpy
+ultralytics
+pillow
+pandas

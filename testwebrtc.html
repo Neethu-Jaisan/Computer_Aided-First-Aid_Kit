@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Camera Capture</title>
+</head>
+<body>
+    <h1>WebRTC Camera Access</h1>
+    <video id="myVideo" autoplay muted></video>
+    <button id="openCameraButton">Open Camera</button>
+    <button id="captureButton" disabled>Capture Image</button>
+    <img id="capturedImage" alt="Captured Image" style="display: none;">
+
+    <script>
+        const videoElement = document.getElementById('myVideo');
+        const captureButton = document.getElementById('captureButton');
+        const capturedImage = document.getElementById('capturedImage');
+        const openCameraButton = document.getElementById('openCameraButton');
+
+        function handleError(error) {
+          console.error('Error:', error);
+        }
+
+        function startCamera() {
+          navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+              videoElement.srcObject = stream;
+              captureButton.disabled = false;
+            })
+            .catch(handleError);
+        }
+
+        function captureImage() {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = videoElement.videoWidth;
+          canvas.height = videoElement.videoHeight;
+          ctx.drawImage(videoElement, 0, 0);
+          const imageData = canvas.toDataURL('image/jpeg', 1.0);
+
+          capturedImage.src = imageData;
+          capturedImage.style.display = 'block'; // Display captured image
+        }
+
+        captureButton.addEventListener('click', captureImage);
+        openCameraButton.addEventListener('click', startCamera);
+
+        // Initially disable the capture button as camera is not open yet
+        captureButton.disabled = true; 
+    </script>
+</body>
+</html>
