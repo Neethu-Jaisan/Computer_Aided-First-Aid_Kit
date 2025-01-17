@@ -1,6 +1,7 @@
 
 # firstaid-emergency-detection-app
-
+**Research Paper**
+https://www.ijprems.com/uploadedfiles/paper//issue_4_april_2024/33281/final/fin_ijprems1713176320.pdf
 1. **Flask App Setup**:
    - setting flask app
    - create a python virtual env : ``` python3 -m venv feda ```
